@@ -78,7 +78,7 @@ const Pricing = () => {
           {plans.map((plan, index) => (
             <div 
               key={plan.name}
-              className={`relative bg-white rounded-2xl shadow-lg border-2 p-8 transition-transform duration-300 hover:scale-105 animate-slide-up animate-delay-${index * 100} ${
+              className={`relative bg-white rounded-2xl shadow-lg border-2 p-8 transition-transform duration-300 hover:scale-105 animate-slide-up animate-delay-${index * 100} flex flex-col ${
                 plan.popular ? 'border-primary' : 'border-gray-200'
               }`}
             >
@@ -100,7 +100,7 @@ const Pricing = () => {
                 <p className="text-gray-600">{plan.description}</p>
               </div>
 
-              <ul className="space-y-4 mb-8">
+              <ul className="space-y-4 mb-8 flex-grow">
                 {plan.features.map((feature, idx) => (
                   <li key={idx} className="flex items-start">
                     <Check className="w-5 h-5 text-success mr-3 mt-0.5 flex-shrink-0" />
@@ -111,7 +111,7 @@ const Pricing = () => {
 
               <Button 
                 variant={plan.buttonVariant}
-                className={`w-full h-12 font-semibold ${
+                className={`w-full h-12 font-semibold mt-auto ${
                   plan.popular 
                     ? 'bg-primary hover:bg-primary/90 text-white' 
                     : plan.buttonVariant === 'outline' 
