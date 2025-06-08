@@ -30,6 +30,7 @@ const Hero = () => {
               <Button 
                 size="lg" 
                 className="bg-primary hover:bg-primary/90 text-lg px-8 py-4 h-auto font-semibold"
+                onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSdP_ISRiZiDzWTuD4A-aWZFcTnf1u4oGqDK7lHdl5xic096vQ/viewform', '_blank')}
               >
                 Book Free Mock Interview
               </Button>

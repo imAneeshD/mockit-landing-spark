@@ -5,8 +5,8 @@ import { Button } from '@/components/ui/button';
 const Pricing = () => {
   const plans = [
     {
-      name: "Free",
-      price: "$0",
+      name: "Test Your Skill",
+      price: "₹0",
       period: "/month",
       description: "Perfect for getting started with interview prep",
       features: [
@@ -21,8 +21,8 @@ const Pricing = () => {
       popular: false
     },
     {
-      name: "Pro",
-      price: "$29",
+      name: "Base Plan",
+      price: "₹100",
       period: "/month",
       description: "Ideal for serious job seekers and career changers",
       features: [
@@ -34,14 +34,14 @@ const Pricing = () => {
         "1-on-1 career coaching session",
         "Access to premium resources"
       ],
-      buttonText: "Upgrade to Pro",
+      buttonText: "Upgrade to Base",
       buttonVariant: "default" as const,
       popular: true
     },
     {
-      name: "Enterprise",
-      price: "Custom",
-      period: "",
+      name: "Pro Plan",
+      price: "₹200",
+      period: "/month",
       description: "For teams and organizations",
       features: [
         "Unlimited mock interviews",
@@ -52,7 +52,7 @@ const Pricing = () => {
         "API access",
         "Custom integrations"
       ],
-      buttonText: "Contact Sales",
+      buttonText: "Upgrade to Pro",
       buttonVariant: "outline" as const,
       popular: false
     }
@@ -114,6 +114,7 @@ const Pricing = () => {
                       ? 'border-primary text-primary hover:bg-primary hover:text-white'
                       : ''
                 }`}
+                onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSdP_ISRiZiDzWTuD4A-aWZFcTnf1u4oGqDK7lHdl5xic096vQ/viewform', '_blank')}
               >
                 {plan.buttonText}
               </Button>

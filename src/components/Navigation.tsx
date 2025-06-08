@@ -46,7 +46,10 @@ const Navigation = () => {
             <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
               Sign In
             </Button>
-            <Button className="bg-primary hover:bg-primary/90">
+            <Button 
+              className="bg-primary hover:bg-primary/90"
+              onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSdP_ISRiZiDzWTuD4A-aWZFcTnf1u4oGqDK7lHdl5xic096vQ/viewform', '_blank')}
+            >
               Book Mock Interview
             </Button>
           </div>
@@ -86,7 +89,10 @@ const Navigation = () => {
                 <Button variant="outline" className="w-full border-primary text-primary">
                   Sign In
                 </Button>
-                <Button className="w-full bg-primary hover:bg-primary/90">
+                <Button 
+                  className="w-full bg-primary hover:bg-primary/90"
+                  onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSdP_ISRiZiDzWTuD4A-aWZFcTnf1u4oGqDK7lHdl5xic096vQ/viewform', '_blank')}
+                >
                   Book Mock Interview
                 </Button>
               </div>

@@ -73,7 +73,10 @@ const HowItWorks = () => {
             🚀 Ready to get started?
           </div>
           <div className="space-x-4">
-            <button className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+            <button 
+              className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
+              onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSdP_ISRiZiDzWTuD4A-aWZFcTnf1u4oGqDK7lHdl5xic096vQ/viewform', '_blank')}
+            >
               Start Free Trial
             </button>
             <button className="text-primary hover:text-primary/80 font-medium">
