@@ -18,7 +18,8 @@ const Pricing = () => {
       ],
       buttonText: "Get Started Free",
       buttonVariant: "outline" as const,
-      popular: false
+      popular: false,
+      formLink: "https://docs.google.com/forms/d/e/1FAIpQLSdP_ISRiZiDzWTuD4A-aWZFcTnf1u4oGqDK7lHdl5xic096vQ/viewform"
     },
     {
       name: "Base Plan",
@@ -36,25 +37,28 @@ const Pricing = () => {
       ],
       buttonText: "Upgrade to Base",
       buttonVariant: "default" as const,
-      popular: true
+      popular: true,
+      formLink: "https://docs.google.com/forms/d/e/1FAIpQLSeIpQRx1Xfg-xdnKhH2qtCLcHT1t9N1Gn7Xrxg9_O2Zg_zbDQ/viewform"
     },
     {
       name: "Pro Plan",
       price: "₹200",
       period: "/month",
-      description: "For teams and organizations",
+      description: "Complete interview preparation with all rounds covered",
       features: [
+        "Get Resume Feedback",
+        "MCQ Round",
+        "Coding Round",
+        "Technical Round",
+        "Managerial Round",
+        "HR Round",
         "Unlimited mock interviews",
-        "Custom interview scenarios",
-        "Team analytics and reporting",
-        "Dedicated account manager",
-        "White-label solution",
-        "API access",
-        "Custom integrations"
+        "Custom interview scenarios"
       ],
       buttonText: "Upgrade to Pro",
       buttonVariant: "outline" as const,
-      popular: false
+      popular: false,
+      formLink: "https://docs.google.com/forms/d/e/1FAIpQLSc2r7pfpaHMsOkfTAFYPq8DgXBrFkK4ByH6XPpSpWHfVzNzdw/viewform"
     }
   ];
 
@@ -114,7 +118,7 @@ const Pricing = () => {
                       ? 'border-primary text-primary hover:bg-primary hover:text-white'
                       : ''
                 }`}
-                onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSdP_ISRiZiDzWTuD4A-aWZFcTnf1u4oGqDK7lHdl5xic096vQ/viewform', '_blank')}
+                onClick={() => window.open(plan.formLink, '_blank')}
               >
                 {plan.buttonText}
               </Button>
