@@ -38,38 +38,33 @@ const HowItWorks = () => {
           </p>
         </div>
 
-        <div className="relative">
-          {/* Connection lines */}
-          <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-primary via-success to-primary transform -translate-y-1/2 z-0"></div>
-          
-          <div className="grid md:grid-cols-3 gap-8 relative z-10">
-            {steps.map((step, index) => {
-              const IconComponent = step.icon;
-              return (
-                <div 
-                  key={step.step} 
-                  className={`text-center animate-slide-up animate-delay-${index * 200}`}
-                >
-                  <div className="relative mb-6">
-                    <div className={`w-20 h-20 ${step.color} rounded-full flex items-center justify-center mx-auto shadow-lg`}>
-                      <IconComponent className="w-8 h-8 text-white" />
-                    </div>
-                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-white border-4 border-gray-100 rounded-full flex items-center justify-center text-sm font-bold text-gray-900 shadow-lg">
-                      {step.step}
-                    </div>
+        <div className="grid md:grid-cols-3 gap-8">
+          {steps.map((step, index) => {
+            const IconComponent = step.icon;
+            return (
+              <div 
+                key={step.step} 
+                className={`text-center animate-slide-up animate-delay-${index * 200}`}
+              >
+                <div className="relative mb-6">
+                  <div className={`w-20 h-20 ${step.color} rounded-full flex items-center justify-center mx-auto shadow-lg`}>
+                    <IconComponent className="w-8 h-8 text-white" />
                   </div>
-                  
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                    {step.title}
-                  </h3>
-                  
-                  <p className="text-gray-600 leading-relaxed">
-                    {step.description}
-                  </p>
+                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-white border-4 border-gray-100 rounded-full flex items-center justify-center text-sm font-bold text-gray-900 shadow-lg">
+                    {step.step}
+                  </div>
                 </div>
-              );
-            })}
-          </div>
+                
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                  {step.title}
+                </h3>
+                
+                <p className="text-gray-600 leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
+            );
+          })}
         </div>
 
         {/* CTA */}
