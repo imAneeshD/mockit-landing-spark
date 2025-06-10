@@ -12,6 +12,7 @@ interface TestYourSkillFormData {
   phone: string;
   experience: string;
   targetRole: string;
+  resume: FileList;
 }
 
 interface TestYourSkillFormProps {
@@ -24,21 +25,25 @@ const TestYourSkillForm = ({ onClose }: TestYourSkillFormProps) => {
 
   const onSubmit = async (data: TestYourSkillFormData) => {
     try {
-      const formDataString = JSON.stringify({
-        plan: "Test Your Skill",
-        ...data,
-        timestamp: new Date().toISOString()
-      });
+      const formData = new FormData();
+      formData.append('plan', 'Test Your Skill');
+      formData.append('name', data.name);
+      formData.append('email', data.email);
+      formData.append('phone', data.phone);
+      formData.append('experience', data.experience);
+      formData.append('targetRole', data.targetRole);
+      formData.append('timestamp', new Date().toISOString());
+      
+      if (data.resume && data.resume[0]) {
+        formData.append('resume', data.resume[0]);
+      }
 
-      console.log('Sending form data:', formDataString);
+      console.log('Sending form data as FormData with resume file');
 
-      // Dummy API call
+      // Dummy API call with FormData
       const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: formDataString,
+        body: formData,
       });
 
       if (response.ok) {
@@ -62,7 +67,7 @@ const TestYourSkillForm = ({ onClose }: TestYourSkillFormProps) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+      <div className="bg-white rounded-lg p-8 max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto">
         <h2 className="text-2xl font-bold mb-6">Test Your Skill - Free Trial</h2>
         
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -115,6 +120,17 @@ const TestYourSkillForm = ({ onClose }: TestYourSkillFormProps) => {
               placeholder="e.g., Software Engineer"
             />
             {errors.targetRole && <p className="text-red-500 text-sm">{errors.targetRole.message}</p>}
+          </div>
+
+          <div>
+            <Label htmlFor="resume">Resume (PDF or Word)</Label>
+            <Input
+              id="resume"
+              type="file"
+              accept=".pdf,.doc,.docx"
+              {...register('resume', { required: 'Resume is required' })}
+            />
+            {errors.resume && <p className="text-red-500 text-sm">{errors.resume.message}</p>}
           </div>
 
           <div className="flex space-x-4 pt-4">

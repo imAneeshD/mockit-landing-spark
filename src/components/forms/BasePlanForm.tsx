@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
@@ -14,6 +13,7 @@ interface BasePlanFormData {
   targetRole: string;
   currentSkills: string;
   interviewType: string;
+  resume: FileList;
 }
 
 interface BasePlanFormProps {
@@ -26,22 +26,28 @@ const BasePlanForm = ({ onClose }: BasePlanFormProps) => {
 
   const onSubmit = async (data: BasePlanFormData) => {
     try {
-      const formDataString = JSON.stringify({
-        plan: "Base Plan",
-        price: "₹100/month",
-        ...data,
-        timestamp: new Date().toISOString()
-      });
+      const formData = new FormData();
+      formData.append('plan', 'Base Plan');
+      formData.append('price', '₹100/month');
+      formData.append('name', data.name);
+      formData.append('email', data.email);
+      formData.append('phone', data.phone);
+      formData.append('experience', data.experience);
+      formData.append('targetRole', data.targetRole);
+      formData.append('currentSkills', data.currentSkills);
+      formData.append('interviewType', data.interviewType);
+      formData.append('timestamp', new Date().toISOString());
+      
+      if (data.resume && data.resume[0]) {
+        formData.append('resume', data.resume[0]);
+      }
 
-      console.log('Sending form data:', formDataString);
+      console.log('Sending form data as FormData with resume file');
 
-      // Dummy API call
+      // Dummy API call with FormData
       const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: formDataString,
+        body: formData,
       });
 
       if (response.ok) {
@@ -138,6 +144,17 @@ const BasePlanForm = ({ onClose }: BasePlanFormProps) => {
               placeholder="e.g., Technical, Behavioral"
             />
             {errors.interviewType && <p className="text-red-500 text-sm">{errors.interviewType.message}</p>}
+          </div>
+
+          <div>
+            <Label htmlFor="resume">Resume (PDF or Word)</Label>
+            <Input
+              id="resume"
+              type="file"
+              accept=".pdf,.doc,.docx"
+              {...register('resume', { required: 'Resume is required' })}
+            />
+            {errors.resume && <p className="text-red-500 text-sm">{errors.resume.message}</p>}
           </div>
 
           <div className="flex space-x-4 pt-4">
