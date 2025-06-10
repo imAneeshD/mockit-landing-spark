@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
@@ -26,19 +25,25 @@ const TestYourSkillForm = ({ onClose }: TestYourSkillFormProps) => {
   const onSubmit = async (data: TestYourSkillFormData) => {
     try {
       const formData = new FormData();
-      formData.append('plan', 'Test Your Skill');
-      formData.append('name', data.name);
-      formData.append('email', data.email);
-      formData.append('phone', data.phone);
-      formData.append('experience', data.experience);
-      formData.append('targetRole', data.targetRole);
-      formData.append('timestamp', new Date().toISOString());
+      
+      // Create JSON string with all form data except file
+      const bodyData = {
+        plan: 'Test Your Skill',
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        experience: data.experience,
+        targetRole: data.targetRole,
+        timestamp: new Date().toISOString()
+      };
+      
+      formData.append('body', JSON.stringify(bodyData));
       
       if (data.resume && data.resume[0]) {
         formData.append('resume', data.resume[0]);
       }
 
-      console.log('Sending form data as FormData with resume file');
+      console.log('Sending form data as FormData with resume file and JSON body');
 
       // Dummy API call with FormData
       const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
