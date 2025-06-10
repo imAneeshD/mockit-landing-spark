@@ -1,8 +1,14 @@
 
 import { Check, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useState } from 'react';
+import TestYourSkillForm from './forms/TestYourSkillForm';
+import BasePlanForm from './forms/BasePlanForm';
+import ProPlanForm from './forms/ProPlanForm';
 
 const Pricing = () => {
+  const [activeForm, setActiveForm] = useState<string | null>(null);
+
   const plans = [
     {
       name: "Test Your Skill",
@@ -19,7 +25,7 @@ const Pricing = () => {
       buttonText: "Get Started Free",
       buttonVariant: "outline" as const,
       popular: false,
-      formLink: "https://docs.google.com/forms/d/e/1FAIpQLSdP_ISRiZiDzWTuD4A-aWZFcTnf1u4oGqDK7lHdl5xic096vQ/viewform"
+      formType: "test"
     },
     {
       name: "Base Plan",
@@ -38,7 +44,7 @@ const Pricing = () => {
       buttonText: "Upgrade to Base",
       buttonVariant: "default" as const,
       popular: true,
-      formLink: "https://docs.google.com/forms/d/e/1FAIpQLSeIpQRx1Xfg-xdnKhH2qtCLcHT1t9N1Gn7Xrxg9_O2Zg_zbDQ/viewform"
+      formType: "base"
     },
     {
       name: "Pro Plan",
@@ -58,9 +64,17 @@ const Pricing = () => {
       buttonText: "Upgrade to Pro",
       buttonVariant: "outline" as const,
       popular: false,
-      formLink: "https://docs.google.com/forms/d/e/1FAIpQLSc2r7pfpaHMsOkfTAFYPq8DgXBrFkK4ByH6XPpSpWHfVzNzdw/viewform"
+      formType: "pro"
     }
   ];
+
+  const handleFormOpen = (formType: string) => {
+    setActiveForm(formType);
+  };
+
+  const handleFormClose = () => {
+    setActiveForm(null);
+  };
 
   return (
     <section id="pricing" className="py-20 bg-white">
@@ -118,7 +132,7 @@ const Pricing = () => {
                       ? 'border-primary text-primary hover:bg-primary hover:text-white'
                       : ''
                 }`}
-                onClick={() => window.open(plan.formLink, '_blank')}
+                onClick={() => handleFormOpen(plan.formType)}
               >
                 {plan.buttonText}
               </Button>
@@ -136,6 +150,11 @@ const Pricing = () => {
           </div>
         </div>
       </div>
+
+      {/* Forms */}
+      {activeForm === 'test' && <TestYourSkillForm onClose={handleFormClose} />}
+      {activeForm === 'base' && <BasePlanForm onClose={handleFormClose} />}
+      {activeForm === 'pro' && <ProPlanForm onClose={handleFormClose} />}
     </section>
   );
 };
