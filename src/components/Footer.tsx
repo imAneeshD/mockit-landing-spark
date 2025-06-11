@@ -15,7 +15,7 @@ const Footer = () => {
     {
       title: "Resources",
       links: [
-        { name: "Interview Tips", href: "#" },
+        { name: "Interview Tips", href: "/interview-tips" },
         { name: "Career Blog", href: "#" },
         { name: "Resume Templates", href: "#" },
         { name: "Salary Guide", href: "#" }
@@ -24,10 +24,10 @@ const Footer = () => {
     {
       title: "Company",
       links: [
-        { name: "About Us", href: "#" },
+        { name: "About Us", href: "/about" },
         { name: "Careers", href: "#" },
         { name: "Press", href: "#" },
-        { name: "Contact", href: "#" }
+        { name: "Contact", href: "/contact" }
       ]
     },
     {

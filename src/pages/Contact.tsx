@@ -1,0 +1,107 @@
+
+import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { Mail, Phone, MapPin } from 'lucide-react';
+
+const Contact = () => {
+  return (
+    <div className="min-h-screen">
+      <Navigation />
+      <div className="pt-20 pb-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">Contact Us</h1>
+            <p className="text-xl text-gray-600">Get in touch with our team - we're here to help!</p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Contact Form */}
+            <div className="bg-white rounded-lg shadow-lg p-8">
+              <h2 className="text-2xl font-semibold text-gray-900 mb-6">Send us a message</h2>
+              <form className="space-y-6">
+                <div>
+                  <Label htmlFor="name">Full Name</Label>
+                  <Input id="name" placeholder="Enter your full name" />
+                </div>
+                <div>
+                  <Label htmlFor="email">Email</Label>
+                  <Input id="email" type="email" placeholder="Enter your email" />
+                </div>
+                <div>
+                  <Label htmlFor="subject">Subject</Label>
+                  <Input id="subject" placeholder="What is this regarding?" />
+                </div>
+                <div>
+                  <Label htmlFor="message">Message</Label>
+                  <Textarea id="message" placeholder="Tell us how we can help you" rows={5} />
+                </div>
+                <Button className="w-full bg-primary hover:bg-primary/90">
+                  Send Message
+                </Button>
+              </form>
+            </div>
+
+            {/* Contact Information */}
+            <div className="space-y-8">
+              <div className="bg-white rounded-lg shadow-lg p-8">
+                <h2 className="text-2xl font-semibold text-gray-900 mb-6">Get in touch</h2>
+                <div className="space-y-6">
+                  <div className="flex items-start">
+                    <Mail className="w-6 h-6 text-primary mr-4 mt-1" />
+                    <div>
+                      <h3 className="font-medium text-gray-900">Email</h3>
+                      <p className="text-gray-600">support@mockit.com</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <Phone className="w-6 h-6 text-primary mr-4 mt-1" />
+                    <div>
+                      <h3 className="font-medium text-gray-900">Phone</h3>
+                      <p className="text-gray-600">+1 (555) 123-4567</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <MapPin className="w-6 h-6 text-primary mr-4 mt-1" />
+                    <div>
+                      <h3 className="font-medium text-gray-900">Office</h3>
+                      <p className="text-gray-600">
+                        123 Business Street<br />
+                        Suite 100<br />
+                        New York, NY 10001
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-lg shadow-lg p-8">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">Office Hours</h3>
+                <div className="space-y-2 text-gray-600">
+                  <div className="flex justify-between">
+                    <span>Monday - Friday</span>
+                    <span>9:00 AM - 6:00 PM</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Saturday</span>
+                    <span>10:00 AM - 4:00 PM</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Sunday</span>
+                    <span>Closed</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <Footer />
+    </div>
+  );
+};
+
+export default Contact;
