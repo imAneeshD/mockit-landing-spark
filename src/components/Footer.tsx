@@ -16,27 +16,27 @@ const Footer = () => {
       title: "Resources",
       links: [
         { name: "Interview Tips", href: "/interview-tips" },
-        { name: "Career Blog", href: "#" },
-        { name: "Resume Templates", href: "#" },
-        { name: "Salary Guide", href: "#" }
+        { name: "Career Blog", href: "/career-blog" },
+        { name: "Resume Templates", href: "/resume-templates" },
+        { name: "Salary Guide", href: "/salary-guide" }
       ]
     },
     {
       title: "Company",
       links: [
         { name: "About Us", href: "/about" },
-        { name: "Careers", href: "#" },
-        { name: "Press", href: "#" },
+        { name: "Careers", href: "/careers" },
+        { name: "Press", href: "/press" },
         { name: "Contact", href: "/contact" }
       ]
     },
     {
       title: "Support",
       links: [
-        { name: "Help Center", href: "#" },
-        { name: "Privacy Policy", href: "#" },
-        { name: "Terms of Service", href: "#" },
-        { name: "Refund Policy", href: "#" }
+        { name: "Help Center", href: "/help-center" },
+        { name: "Privacy Policy", href: "/privacy-policy" },
+        { name: "Terms of Service", href: "/terms-of-service" },
+        { name: "Refund Policy", href: "/refund-policy" }
       ]
     }
   ];
@@ -132,8 +132,8 @@ const Footer = () => {
               © 2024 MockIt. All rights reserved.
             </div>
             <div className="flex space-x-6 text-sm text-gray-400">
-              <a href="#" className="hover:text-white transition-colors">Privacy</a>
-              <a href="#" className="hover:text-white transition-colors">Terms</a>
+              <a href="/privacy-policy" className="hover:text-white transition-colors">Privacy</a>
+              <a href="/terms-of-service" className="hover:text-white transition-colors">Terms</a>
               <a href="#" className="hover:text-white transition-colors">Cookies</a>
             </div>
           </div>
