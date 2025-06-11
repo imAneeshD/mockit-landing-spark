@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 import TestYourSkillForm from './forms/TestYourSkillForm';
 
 const Navigation = () => {
@@ -20,14 +21,14 @@ const Navigation = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
-            <div className="flex items-center">
+            <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
               <img 
                 src="/lovable-uploads/4f66c731-e0c8-44ba-a498-03671c00a5e6.png" 
                 alt="MockIt Logo" 
                 className="h-8 w-8 mr-3"
               />
               <div className="text-2xl font-bold text-primary">MockIt</div>
-            </div>
+            </Link>
 
             {/* Desktop Navigation */}
             <div className="hidden md:block">
