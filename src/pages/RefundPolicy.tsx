@@ -1,7 +1,6 @@
-
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import { CreditCard, Clock, XCircle, MessageSquare, Mail } from 'lucide-react';
+import { CreditCard, Clock, XCircle, MessageSquare, Mail, Shield } from 'lucide-react';
 
 const RefundPolicy = () => {
   return (
@@ -16,6 +15,21 @@ const RefundPolicy = () => {
 
           <div className="bg-white rounded-lg shadow-lg p-8">
             <div className="prose prose-lg max-w-none">
+              {/* Money Back Guarantee */}
+              <div className="mb-8">
+                <div className="flex items-center mb-4">
+                  <Shield className="w-6 h-6 text-success mr-3" />
+                  <h2 className="text-2xl font-bold text-gray-900 mb-0">7-Day Money-Back Guarantee</h2>
+                </div>
+                <div className="bg-success/10 border-l-4 border-success p-6 rounded-lg">
+                  <p className="text-gray-700 mb-4 font-semibold">We stand behind our service with a 7-day money-back guarantee!</p>
+                  <p className="text-gray-700">
+                    If you're not completely satisfied with your MockIt experience within the first 7 days of your purchase, 
+                    we'll refund your money - no questions asked. This gives you the confidence to try our service risk-free.
+                  </p>
+                </div>
+              </div>
+
               <div className="mb-8">
                 <div className="flex items-center mb-4">
                   <CreditCard className="w-6 h-6 text-primary mr-3" />
@@ -24,6 +38,10 @@ const RefundPolicy = () => {
                 <div className="bg-gray-50 p-6 rounded-lg">
                   <p className="text-gray-700 mb-4">You may be eligible for a refund under these conditions:</p>
                   <ul className="space-y-3 text-gray-700">
+                    <li className="flex items-start">
+                      <span className="w-2 h-2 bg-success rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      <span><strong>7-Day Guarantee:</strong> Any purchase within the first 7 days - no questions asked</span>
+                    </li>
                     <li className="flex items-start">
                       <span className="w-2 h-2 bg-success rounded-full mt-2 mr-3 flex-shrink-0"></span>
                       <span>Technical issues on our end prevented you from accessing your scheduled session</span>
@@ -77,7 +95,7 @@ const RefundPolicy = () => {
                   <h2 className="text-2xl font-bold text-gray-900 mb-0">Non-Refundable Items</h2>
                 </div>
                 <div className="bg-red-50 border-l-4 border-red-400 p-6">
-                  <p className="text-gray-700 mb-4 font-semibold">The following are NOT eligible for refunds:</p>
+                  <p className="text-gray-700 mb-4 font-semibold">The following are NOT eligible for refunds (after the 7-day guarantee period):</p>
                   <ul className="space-y-3 text-gray-700">
                     <li className="flex items-start">
                       <span className="w-2 h-2 bg-red-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>

@@ -46,9 +46,9 @@ const Navigation = () => {
 
             {/* CTA Buttons */}
             <div className="hidden md:flex items-center space-x-4">
-              <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
+              {/* <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
                 Sign In
-              </Button>
+              </Button> */}
               <Button 
                 className="bg-primary hover:bg-primary/90"
                 onClick={() => setShowTestForm(true)}
@@ -89,9 +89,9 @@ const Navigation = () => {
                   </a>
                 ))}
                 <div className="pt-4 space-y-2">
-                  <Button variant="outline" className="w-full border-primary text-primary">
+                  {/* <Button variant="outline" className="w-full border-primary text-primary">
                     Sign In
-                  </Button>
+                  </Button> */}
                   <Button 
                     className="w-full bg-primary hover:bg-primary/90"
                     onClick={() => {
