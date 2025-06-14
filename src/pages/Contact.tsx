@@ -6,8 +6,68 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import { useState } from 'react';
+import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({ ...prev, [id]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const { error } = await supabase
+        .from('form_submissions')
+        .insert([
+          {
+            form_type: 'contact',
+            name: formData.name,
+            email: formData.email,
+            subject: formData.subject,
+            message: formData.message
+          }
+        ]);
+
+      if (error) throw error;
+
+      toast({
+        title: "Success!",
+        description: "Your message has been sent successfully. We'll get back to you soon!",
+      });
+
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('Error submitting contact form:', error);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="min-h-screen">
       <Navigation />
@@ -22,25 +82,55 @@ const Contact = () => {
             {/* Contact Form */}
             <div className="bg-white rounded-lg shadow-lg p-8">
               <h2 className="text-2xl font-semibold text-gray-900 mb-6">Send us a message</h2>
-              <form className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <Label htmlFor="name">Full Name</Label>
-                  <Input id="name" placeholder="Enter your full name" />
+                  <Input 
+                    id="name" 
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder="Enter your full name" 
+                    required 
+                  />
                 </div>
                 <div>
                   <Label htmlFor="email">Email</Label>
-                  <Input id="email" type="email" placeholder="Enter your email" />
+                  <Input 
+                    id="email" 
+                    type="email" 
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="Enter your email" 
+                    required 
+                  />
                 </div>
                 <div>
                   <Label htmlFor="subject">Subject</Label>
-                  <Input id="subject" placeholder="What is this regarding?" />
+                  <Input 
+                    id="subject" 
+                    value={formData.subject}
+                    onChange={handleInputChange}
+                    placeholder="What is this regarding?" 
+                    required 
+                  />
                 </div>
                 <div>
                   <Label htmlFor="message">Message</Label>
-                  <Textarea id="message" placeholder="Tell us how we can help you" rows={5} />
+                  <Textarea 
+                    id="message" 
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    placeholder="Tell us how we can help you" 
+                    rows={5} 
+                    required 
+                  />
                 </div>
-                <Button className="w-full bg-primary hover:bg-primary/90">
-                  Send Message
+                <Button 
+                  type="submit" 
+                  className="w-full bg-primary hover:bg-primary/90"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </Button>
               </form>
             </div>

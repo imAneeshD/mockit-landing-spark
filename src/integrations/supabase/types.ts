@@ -9,7 +9,72 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      form_submissions: {
+        Row: {
+          created_at: string
+          current_skills: string | null
+          email: string
+          experience: string | null
+          form_type: string
+          id: string
+          interview_type: string | null
+          message: string | null
+          name: string
+          phone: string | null
+          plan_name: string | null
+          plan_price: string | null
+          preferred_interview_rounds: string | null
+          resume_file_name: string | null
+          resume_file_path: string | null
+          subject: string | null
+          target_companies: string | null
+          target_role: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          current_skills?: string | null
+          email: string
+          experience?: string | null
+          form_type: string
+          id?: string
+          interview_type?: string | null
+          message?: string | null
+          name: string
+          phone?: string | null
+          plan_name?: string | null
+          plan_price?: string | null
+          preferred_interview_rounds?: string | null
+          resume_file_name?: string | null
+          resume_file_path?: string | null
+          subject?: string | null
+          target_companies?: string | null
+          target_role?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          current_skills?: string | null
+          email?: string
+          experience?: string | null
+          form_type?: string
+          id?: string
+          interview_type?: string | null
+          message?: string | null
+          name?: string
+          phone?: string | null
+          plan_name?: string | null
+          plan_price?: string | null
+          preferred_interview_rounds?: string | null
+          resume_file_name?: string | null
+          resume_file_path?: string | null
+          subject?: string | null
+          target_companies?: string | null
+          target_role?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

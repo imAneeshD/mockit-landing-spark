@@ -1,9 +1,11 @@
-import React from 'react';
+
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 interface ProPlanFormData {
   name: string;
@@ -24,59 +26,66 @@ interface ProPlanFormProps {
 const ProPlanForm = ({ onClose }: ProPlanFormProps) => {
   const { register, handleSubmit, formState: { errors } } = useForm<ProPlanFormData>();
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const uploadResume = async (file: File): Promise<{ path: string; name: string } | null> => {
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
+    
+    const { data, error } = await supabase.storage
+      .from('resumes')
+      .upload(`pro-plan/${fileName}`, file);
+
+    if (error) {
+      console.error('Error uploading file:', error);
+      return null;
+    }
+
+    return { path: data.path, name: file.name };
+  };
 
   const onSubmit = async (data: ProPlanFormData) => {
+    setIsSubmitting(true);
+    
     try {
-      const formData = new FormData();
+      let resumeInfo = null;
       
-      // Create JSON string with all form data except file
-      const bodyData = {
-        plan: 'Pro Plan',
-        price: '₹200/month',
-        features: [
-          "Resume Feedback",
-          "MCQ Round",
-          "Coding Round", 
-          "Technical Round",
-          "Managerial Round",
-          "HR Round",
-          "Unlimited mock interviews",
-          "Custom interview scenarios"
-        ],
-        name: data.name,
-        email: data.email,
-        phone: data.phone,
-        experience: data.experience,
-        targetRole: data.targetRole,
-        currentSkills: data.currentSkills,
-        preferredInterviewRounds: data.preferredInterviewRounds,
-        targetCompanies: data.targetCompanies,
-        timestamp: new Date().toISOString()
-      };
-      
-      formData.append('body', JSON.stringify(bodyData));
-      
+      // Upload resume if provided
       if (data.resume && data.resume[0]) {
-        formData.append('resume', data.resume[0]);
+        resumeInfo = await uploadResume(data.resume[0]);
+        if (!resumeInfo) {
+          throw new Error('Failed to upload resume');
+        }
       }
 
-      console.log('Sending form data as FormData with resume file and JSON body');
+      // Store form data in database
+      const { error } = await supabase
+        .from('form_submissions')
+        .insert([
+          {
+            form_type: 'pro-plan',
+            name: data.name,
+            email: data.email,
+            phone: data.phone,
+            experience: data.experience,
+            target_role: data.targetRole,
+            current_skills: data.currentSkills,
+            preferred_interview_rounds: data.preferredInterviewRounds,
+            target_companies: data.targetCompanies,
+            plan_name: 'Pro Plan',
+            plan_price: '₹200/month',
+            resume_file_path: resumeInfo?.path || null,
+            resume_file_name: resumeInfo?.name || null
+          }
+        ]);
 
-      // Dummy API call with FormData
-      const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
-        method: 'POST',
-        body: formData,
+      if (error) throw error;
+
+      toast({
+        title: "Success!",
+        description: "Your Pro Plan subscription request has been submitted successfully.",
       });
-
-      if (response.ok) {
-        toast({
-          title: "Success!",
-          description: "Your Pro Plan subscription request has been submitted successfully.",
-        });
-        onClose();
-      } else {
-        throw new Error('Failed to submit form');
-      }
+      onClose();
     } catch (error) {
       console.error('Error submitting form:', error);
       toast({
@@ -84,6 +93,8 @@ const ProPlanForm = ({ onClose }: ProPlanFormProps) => {
         description: "Failed to submit form. Please try again.",
         variant: "destructive",
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -186,8 +197,8 @@ const ProPlanForm = ({ onClose }: ProPlanFormProps) => {
           </div>
 
           <div className="flex space-x-4 pt-4">
-            <Button type="submit" className="flex-1">
-              Subscribe to Pro Plan
+            <Button type="submit" className="flex-1" disabled={isSubmitting}>
+              {isSubmitting ? 'Submitting...' : 'Subscribe to Pro Plan'}
             </Button>
             <Button type="button" variant="outline" onClick={onClose} className="flex-1">
               Cancel
