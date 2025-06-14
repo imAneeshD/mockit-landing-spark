@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 import { Star, Users, Calendar } from 'lucide-react';
 import { useState } from 'react';
@@ -19,7 +18,7 @@ const Hero = () => {
             {/* Left Content */}
             <div className="text-center lg:text-left animate-slide-up">
               <div className="inline-flex items-center px-4 py-2 bg-success/10 text-success rounded-full text-sm font-medium mb-6">
-                ✨ Join 10,000+ successful candidates
+                ✨ Join 50+ successful candidates
               </div>
               
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
@@ -58,15 +57,7 @@ const Hero = () => {
                       <Star key={i} className="w-4 h-4 fill-current" />
                     ))}
                   </div>
-                  <span>4.9/5 from 2,500+ reviews</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Users className="w-4 h-4 text-success" />
-                  <span>10,000+ Interviews Conducted</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Users className="w-4 h-4 text-primary" />
-                  <span>500+ Expert Interviewers</span>
+                  <span>4.9/5 from 20+ reviews</span>
                 </div>
               </div>
             </div>
