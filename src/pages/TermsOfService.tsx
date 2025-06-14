@@ -168,7 +168,7 @@ const TermsOfService = () => {
               <div className="bg-primary/10 p-6 rounded-lg">
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Questions about Terms?</h3>
                 <p className="text-gray-700">
-                  Contact our legal team at <span className="text-primary font-semibold">legal@mockit.com</span>
+                  Contact our legal team at <span className="text-primary font-semibold">mockit@rediffmail.com</span>
                 </p>
               </div>
             </div>

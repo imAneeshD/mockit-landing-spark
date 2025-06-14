@@ -138,7 +138,7 @@ const PrivacyPolicy = () => {
                   <p className="text-gray-700">
                     If you have any questions about this Privacy Policy or our data practices, please contact us at:
                   </p>
-                  <p className="text-primary font-semibold mt-2">privacy@mockit.com</p>
+                  <p className="text-primary font-semibold mt-2">mockit@rediffmail.com</p>
                 </div>
               </div>
             </div>
