@@ -25,7 +25,7 @@ const Navigation = () => {
               <img 
                 src="/lovable-uploads/4f66c731-e0c8-44ba-a498-03671c00a5e6.png" 
                 alt="MockIt Logo" 
-                className="h-8 w-8 mr-3"
+                className="h-12 w-12 mr-3"
               />
               <div className="text-2xl font-bold text-primary">MockIt</div>
             </Link>
