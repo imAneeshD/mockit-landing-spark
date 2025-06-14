@@ -12,7 +12,7 @@ const ComingSoon = () => {
           <img 
             src="/lovable-uploads/4f66c731-e0c8-44ba-a498-03671c00a5e6.png" 
             alt="MockIt Logo" 
-            className="w-[50px] h-[40px] mr-3"
+            className="w-16 h-12 mr-3"
           />
           <div className="text-2xl font-bold text-primary">MockIt</div>
         </Link>
