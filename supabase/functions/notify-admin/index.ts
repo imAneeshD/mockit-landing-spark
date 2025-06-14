@@ -51,8 +51,8 @@ const handler = async (req: Request): Promise<Response> => {
         emailSubject = `New Contact Form Submission - ${record.name}`;
         emailContent = `
           <h2>New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${record.name}</p>
-          <p><strong>Email:</strong> ${record.email}</p>
+          <p><strong>Candidate Name:</strong> ${record.name}</p>
+          <p><strong>Candidate Email:</strong> ${record.email}</p>
           <p><strong>Subject:</strong> ${record.subject || 'N/A'}</p>
           <p><strong>Message:</strong> ${record.message || 'N/A'}</p>
           <p><strong>Submitted at:</strong> ${new Date(record.created_at).toLocaleString()}</p>
@@ -63,13 +63,13 @@ const handler = async (req: Request): Promise<Response> => {
         emailSubject = `New Test Your Skill Form Submission - ${record.name}`;
         emailContent = `
           <h2>New Test Your Skill Form Submission</h2>
-          <p><strong>Name:</strong> ${record.name}</p>
-          <p><strong>Email:</strong> ${record.email}</p>
+          <p><strong>Candidate Name:</strong> ${record.name}</p>
+          <p><strong>Candidate Email:</strong> ${record.email}</p>
           <p><strong>Phone:</strong> ${record.phone || 'N/A'}</p>
           <p><strong>Experience:</strong> ${record.experience || 'N/A'}</p>
           <p><strong>Target Role:</strong> ${record.target_role || 'N/A'}</p>
           <p><strong>Plan:</strong> ${record.plan_name} (${record.plan_price})</p>
-          <p><strong>Resume:</strong> ${record.resume_file_name || 'Not provided'}</p>
+          <p><strong>Resume File:</strong> ${record.resume_file_name || 'Not provided'}</p>
           <p><strong>Submitted at:</strong> ${new Date(record.created_at).toLocaleString()}</p>
         `;
         break;
@@ -78,15 +78,15 @@ const handler = async (req: Request): Promise<Response> => {
         emailSubject = `New Base Plan Subscription - ${record.name}`;
         emailContent = `
           <h2>New Base Plan Subscription</h2>
-          <p><strong>Name:</strong> ${record.name}</p>
-          <p><strong>Email:</strong> ${record.email}</p>
+          <p><strong>Candidate Name:</strong> ${record.name}</p>
+          <p><strong>Candidate Email:</strong> ${record.email}</p>
           <p><strong>Phone:</strong> ${record.phone || 'N/A'}</p>
           <p><strong>Experience:</strong> ${record.experience || 'N/A'}</p>
           <p><strong>Target Role:</strong> ${record.target_role || 'N/A'}</p>
           <p><strong>Current Skills:</strong> ${record.current_skills || 'N/A'}</p>
           <p><strong>Interview Type:</strong> ${record.interview_type || 'N/A'}</p>
           <p><strong>Plan:</strong> ${record.plan_name} (${record.plan_price})</p>
-          <p><strong>Resume:</strong> ${record.resume_file_name || 'Not provided'}</p>
+          <p><strong>Resume File:</strong> ${record.resume_file_name || 'Not provided'}</p>
           <p><strong>Submitted at:</strong> ${new Date(record.created_at).toLocaleString()}</p>
         `;
         break;
@@ -95,8 +95,8 @@ const handler = async (req: Request): Promise<Response> => {
         emailSubject = `New Pro Plan Subscription - ${record.name}`;
         emailContent = `
           <h2>New Pro Plan Subscription</h2>
-          <p><strong>Name:</strong> ${record.name}</p>
-          <p><strong>Email:</strong> ${record.email}</p>
+          <p><strong>Candidate Name:</strong> ${record.name}</p>
+          <p><strong>Candidate Email:</strong> ${record.email}</p>
           <p><strong>Phone:</strong> ${record.phone || 'N/A'}</p>
           <p><strong>Experience:</strong> ${record.experience || 'N/A'}</p>
           <p><strong>Target Role:</strong> ${record.target_role || 'N/A'}</p>
@@ -104,7 +104,7 @@ const handler = async (req: Request): Promise<Response> => {
           <p><strong>Preferred Interview Rounds:</strong> ${record.preferred_interview_rounds || 'N/A'}</p>
           <p><strong>Target Companies:</strong> ${record.target_companies || 'N/A'}</p>
           <p><strong>Plan:</strong> ${record.plan_name} (${record.plan_price})</p>
-          <p><strong>Resume:</strong> ${record.resume_file_name || 'Not provided'}</p>
+          <p><strong>Resume File:</strong> ${record.resume_file_name || 'Not provided'}</p>
           <p><strong>Submitted at:</strong> ${new Date(record.created_at).toLocaleString()}</p>
         `;
         break;
@@ -113,22 +113,23 @@ const handler = async (req: Request): Promise<Response> => {
         emailSubject = `New Form Submission - ${record.name}`;
         emailContent = `
           <h2>New Form Submission</h2>
-          <p><strong>Name:</strong> ${record.name}</p>
-          <p><strong>Email:</strong> ${record.email}</p>
+          <p><strong>Candidate Name:</strong> ${record.name}</p>
+          <p><strong>Candidate Email:</strong> ${record.email}</p>
           <p><strong>Form Type:</strong> ${record.form_type}</p>
+          <p><strong>Resume File:</strong> ${record.resume_file_name || 'Not provided'}</p>
           <p><strong>Submitted at:</strong> ${new Date(record.created_at).toLocaleString()}</p>
         `;
     }
 
-    // Send email to admin
+    // Send email to both admin addresses
     const emailResponse = await resend.emails.send({
       from: "MockIt Notifications <onboarding@resend.dev>",
-      to: ["aneeshad2@gmail.com"],
+      to: ["aneeshad2@gmail.com", "yashavanthkapila@gmail.com"],
       subject: emailSubject,
       html: emailContent,
     });
 
-    console.log("Admin notification email sent successfully:", emailResponse);
+    console.log("Admin notification email sent successfully to both addresses:", emailResponse);
 
     return new Response(JSON.stringify({ success: true, emailResponse }), {
       status: 200,
