@@ -1,6 +1,8 @@
+
 import { Button } from '@/components/ui/button';
 import { Star, Users, Calendar } from 'lucide-react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import TestYourSkillForm from './forms/TestYourSkillForm';
 
 const Hero = () => {
@@ -39,11 +41,12 @@ const Hero = () => {
                   Book Free Mock Interview
                 </Button>
                 <Button 
+                  asChild
                   variant="outline" 
                   size="lg" 
                   className="border-2 border-primary text-primary hover:bg-primary hover:text-white text-lg px-8 py-4 h-auto font-semibold"
                 >
-                  Watch Demo
+                  <Link to="/coming-soon">Watch Demo</Link>
                 </Button>
               </div>
 
