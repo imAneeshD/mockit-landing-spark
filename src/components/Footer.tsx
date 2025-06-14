@@ -64,7 +64,7 @@ const Footer = () => {
                     <Star key={i} className="w-4 h-4 fill-current" />
                   ))}
                 </div>
-                <span className="text-gray-400 text-sm">4.9/5 from 2,500+ reviews</span>
+                <span className="text-gray-400 text-sm">4.9/5 from 20+ reviews</span>
               </div>
 
               <div className="flex space-x-4">
@@ -103,7 +103,7 @@ const Footer = () => {
               <div>
                 <div className="flex items-center justify-center mb-2">
                   <Users className="w-5 h-5 text-primary mr-2" />
-                  <span className="text-2xl font-bold text-white">10,000+</span>
+                  <span className="text-2xl font-bold text-white">100+</span>
                 </div>
                 <div className="text-gray-400 text-sm">Interviews Conducted</div>
               </div>
@@ -117,7 +117,7 @@ const Footer = () => {
               <div>
                 <div className="flex items-center justify-center mb-2">
                   <Calendar className="w-5 h-5 text-primary mr-2" />
-                  <span className="text-2xl font-bold text-white">500+</span>
+                  <span className="text-2xl font-bold text-white">10+</span>
                 </div>
                 <div className="text-gray-400 text-sm">Expert Interviewers</div>
               </div>
