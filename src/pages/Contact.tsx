@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail } from 'lucide-react';
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
@@ -147,24 +147,8 @@ const Contact = () => {
                       <p className="text-gray-600">mockit@rediffmail.com</p>
                     </div>
                   </div>
-                  <div className="flex items-start">
-                    <Phone className="w-6 h-6 text-primary mr-4 mt-1" />
-                    <div>
-                      <h3 className="font-medium text-gray-900">Phone</h3>
-                      <p className="text-gray-600">+1 (555) 123-4567</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <MapPin className="w-6 h-6 text-primary mr-4 mt-1" />
-                    <div>
-                      <h3 className="font-medium text-gray-900">Office</h3>
-                      <p className="text-gray-600">
-                        123 Business Street<br />
-                        Suite 100<br />
-                        New York, NY 10001
-                      </p>
-                    </div>
-                  </div>
+                  {/* Phone section removed */}
+                  {/* Office section removed */}
                 </div>
               </div>
 
@@ -172,16 +156,8 @@ const Contact = () => {
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">Office Hours</h3>
                 <div className="space-y-2 text-gray-600">
                   <div className="flex justify-between">
-                    <span>Monday - Friday</span>
-                    <span>9:00 AM - 6:00 PM</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Saturday</span>
-                    <span>10:00 AM - 4:00 PM</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Sunday</span>
-                    <span>Closed</span>
+                    <span>24/7 Support</span>
+                    <span>Always Available</span>
                   </div>
                 </div>
               </div>
