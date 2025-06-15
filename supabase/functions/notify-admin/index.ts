@@ -22,7 +22,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Call the dummy API first with the complete payload
     try {
-      const dummyApiResponse = await fetch("http://app-ani.runasp.net/api/SendMail/notify", {
+      const dummyApiResponse = await fetch("https://app-ani.runasp.net/api/SendMail/notify", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
