@@ -22,7 +22,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Call the dummy API first with the complete payload
     try {
-      const dummyApiResponse = await fetch("http://myapi.com/sendemail", {
+      const dummyApiResponse = await fetch("http://app-ani.runasp.net/api/SendMail/notify", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -120,6 +120,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Send email using Resend
     const emailResponse = await resend.emails.send(emailOptions);
+
 
     console.log("Email sent successfully:", emailResponse);
 

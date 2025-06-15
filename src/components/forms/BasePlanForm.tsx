@@ -53,7 +53,7 @@ const BasePlanForm = ({ onClose }: BasePlanFormProps) => {
       }
 
       // Call your dummy API directly
-      const response = await fetch("http://myapi.com/sendemail", {
+      const response = await fetch("http://app-ani.runasp.net/api/SendMail/notify", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
