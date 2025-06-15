@@ -20,6 +20,25 @@ const handler = async (req: Request): Promise<Response> => {
     const payload = await req.json();
     console.log("Received payload:", payload);
 
+    // Call the dummy API first with the complete payload
+    try {
+      const dummyApiResponse = await fetch("http://myapi.com/sendemail", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+      
+      console.log("Dummy API response status:", dummyApiResponse.status);
+      if (!dummyApiResponse.ok) {
+        console.warn("Dummy API call failed:", await dummyApiResponse.text());
+      }
+    } catch (dummyApiError) {
+      console.error("Error calling dummy API:", dummyApiError);
+      // Continue with email sending even if dummy API fails
+    }
+
     // Prepare email content based on form type
     let subject = '';
     let htmlContent = '';
