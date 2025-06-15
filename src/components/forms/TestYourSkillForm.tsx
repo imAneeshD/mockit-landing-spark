@@ -25,53 +25,49 @@ const TestYourSkillForm = ({ onClose }: TestYourSkillFormProps) => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const uploadResume = async (file: File): Promise<{ path: string; name: string } | null> => {
-    const fileExt = file.name.split('.').pop();
-    const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
-    
-    const { data, error } = await supabase.storage
-      .from('resumes')
-      .upload(`test-skill/${fileName}`, file);
-
-    if (error) {
-      console.error('Error uploading file:', error);
-      return null;
-    }
-
-    return { path: data.path, name: file.name };
+  const convertFileToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        const base64 = reader.result as string;
+        // Remove the data:mime;base64, prefix
+        const base64String = base64.split(',')[1];
+        resolve(base64String);
+      };
+      reader.onerror = error => reject(error);
+    });
   };
 
   const onSubmit = async (data: TestYourSkillFormData) => {
     setIsSubmitting(true);
     
     try {
-      let resumeInfo = null;
+      let resumeBase64 = null;
+      let resumeFileName = null;
       
-      // Upload resume if provided
+      // Convert resume to base64 if provided
       if (data.resume && data.resume[0]) {
-        resumeInfo = await uploadResume(data.resume[0]);
-        if (!resumeInfo) {
-          throw new Error('Failed to upload resume');
-        }
+        resumeBase64 = await convertFileToBase64(data.resume[0]);
+        resumeFileName = data.resume[0].name;
       }
 
-      // Store form data in database
-      const { error } = await supabase
-        .from('form_submissions')
-        .insert([
-          {
-            form_type: 'test-skill',
-            name: data.name,
-            email: data.email,
-            phone: data.phone,
-            experience: data.experience,
-            target_role: data.targetRole,
-            plan_name: 'Test Your Skill',
-            plan_price: '₹0/month',
-            resume_file_path: resumeInfo?.path || null,
-            resume_file_name: resumeInfo?.name || null
-          }
-        ]);
+      // Call the edge function which forwards to testapi.com/sendmail
+      const { data: result, error } = await supabase.functions.invoke('notify-admin', {
+        body: {
+          form_type: 'test-skill',
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          experience: data.experience,
+          target_role: data.targetRole,
+          plan_name: 'Test Your Skill',
+          plan_price: '₹0/month',
+          resume_base64: resumeBase64,
+          resume_file_name: resumeFileName,
+          created_at: new Date().toISOString()
+        }
+      });
 
       if (error) throw error;
 

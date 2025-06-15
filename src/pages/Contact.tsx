@@ -30,17 +30,17 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase
-        .from('form_submissions')
-        .insert([
-          {
-            form_type: 'contact',
-            name: formData.name,
-            email: formData.email,
-            subject: formData.subject,
-            message: formData.message
-          }
-        ]);
+      // Call the edge function which forwards to testapi.com/sendmail
+      const { data, error } = await supabase.functions.invoke('notify-admin', {
+        body: {
+          form_type: 'contact',
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          created_at: new Date().toISOString()
+        }
+      });
 
       if (error) throw error;
 
@@ -147,8 +147,6 @@ const Contact = () => {
                       <p className="text-gray-600">mockit@rediffmail.com</p>
                     </div>
                   </div>
-                  {/* Phone section removed */}
-                  {/* Office section removed */}
                 </div>
               </div>
 
