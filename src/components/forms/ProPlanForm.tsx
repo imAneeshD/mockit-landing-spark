@@ -1,11 +1,9 @@
-
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
-import { supabase } from '@/integrations/supabase/client';
 
 interface ProPlanFormData {
   name: string;
@@ -28,58 +26,60 @@ const ProPlanForm = ({ onClose }: ProPlanFormProps) => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const uploadResume = async (file: File): Promise<{ path: string; name: string } | null> => {
-    const fileExt = file.name.split('.').pop();
-    const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
-    
-    const { data, error } = await supabase.storage
-      .from('resumes')
-      .upload(`pro-plan/${fileName}`, file);
-
-    if (error) {
-      console.error('Error uploading file:', error);
-      return null;
-    }
-
-    return { path: data.path, name: file.name };
+  const convertFileToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        const base64 = reader.result as string;
+        // Remove the data:mime;base64, prefix
+        const base64String = base64.split(',')[1];
+        resolve(base64String);
+      };
+      reader.onerror = error => reject(error);
+    });
   };
 
   const onSubmit = async (data: ProPlanFormData) => {
     setIsSubmitting(true);
     
     try {
-      let resumeInfo = null;
+      let resumeBase64 = null;
+      let resumeFileName = null;
       
-      // Upload resume if provided
+      // Convert resume to base64 if provided
       if (data.resume && data.resume[0]) {
-        resumeInfo = await uploadResume(data.resume[0]);
-        if (!resumeInfo) {
-          throw new Error('Failed to upload resume');
-        }
+        resumeBase64 = await convertFileToBase64(data.resume[0]);
+        resumeFileName = data.resume[0].name;
       }
 
-      // Store form data in database
-      const { error } = await supabase
-        .from('form_submissions')
-        .insert([
-          {
-            form_type: 'pro-plan',
-            name: data.name,
-            email: data.email,
-            phone: data.phone,
-            experience: data.experience,
-            target_role: data.targetRole,
-            current_skills: data.currentSkills,
-            preferred_interview_rounds: data.preferredInterviewRounds,
-            target_companies: data.targetCompanies,
-            plan_name: 'Pro Plan',
-            plan_price: '₹200/month',
-            resume_file_path: resumeInfo?.path || null,
-            resume_file_name: resumeInfo?.name || null
-          }
-        ]);
+      // Call your dummy API directly
+      const response = await fetch("http://myapi.com/sendemail", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          form_type: 'pro-plan',
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          experience: data.experience,
+          target_role: data.targetRole,
+          current_skills: data.currentSkills,
+          preferred_interview_rounds: data.preferredInterviewRounds,
+          target_companies: data.targetCompanies,
+          plan_name: 'Pro Plan',
+          plan_price: '₹200/month',
+          resume_base64: resumeBase64,
+          resume_file_name: resumeFileName,
+          created_at: new Date().toISOString()
+        }),
+      });
 
-      if (error) throw error;
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
+      }
 
       toast({
         title: "Success!",

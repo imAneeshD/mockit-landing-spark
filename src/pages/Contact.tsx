@@ -1,4 +1,3 @@
-
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -8,7 +7,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { Mail } from 'lucide-react';
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
-import { supabase } from '@/integrations/supabase/client';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -30,19 +28,25 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // Call the edge function which forwards to testapi.com/sendmail
-      const { data, error } = await supabase.functions.invoke('notify-admin', {
-        body: {
+      // Call your dummy API directly
+      const response = await fetch("http://myapi.com/sendemail", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
           form_type: 'contact',
           name: formData.name,
           email: formData.email,
           subject: formData.subject,
           message: formData.message,
           created_at: new Date().toISOString()
-        }
+        }),
       });
 
-      if (error) throw error;
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
 
       toast({
         title: "Success!",

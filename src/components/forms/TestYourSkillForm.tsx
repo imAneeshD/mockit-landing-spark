@@ -1,11 +1,9 @@
-
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
-import { supabase } from '@/integrations/supabase/client';
 
 interface TestYourSkillFormData {
   name: string;
@@ -52,9 +50,13 @@ const TestYourSkillForm = ({ onClose }: TestYourSkillFormProps) => {
         resumeFileName = data.resume[0].name;
       }
 
-      // Call the edge function which forwards to testapi.com/sendmail
-      const { data: result, error } = await supabase.functions.invoke('notify-admin', {
-        body: {
+      // Call your dummy API directly
+      const response = await fetch("http://myapi.com/sendemail", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
           form_type: 'test-skill',
           name: data.name,
           email: data.email,
@@ -66,10 +68,12 @@ const TestYourSkillForm = ({ onClose }: TestYourSkillFormProps) => {
           resume_base64: resumeBase64,
           resume_file_name: resumeFileName,
           created_at: new Date().toISOString()
-        }
+        }),
       });
 
-      if (error) throw error;
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
+      }
 
       toast({
         title: "Success!",
