@@ -23,7 +23,7 @@ const Navigation = () => {
             {/* Logo */}
             <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
               <img 
-                src="/lovable-uploads/4f66c731-e0c8-44ba-a498-03671c00a5e6.png" 
+                src="./src/assets/images/logo.png" 
                 alt="MockIt Logo" 
                 className="h-8 w-12 mr-3"
               />
