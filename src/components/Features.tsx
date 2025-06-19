@@ -29,6 +29,10 @@ const Features = () => {
     }
   ];
 
+  function setShowTestForm(arg0: boolean): void {
+    throw new Error('Function not implemented.');
+  }
+
   return (
     <section id="features" className="py-20 bg-gradient-to-br from-secondary/30 via-white to-success/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -78,43 +82,64 @@ const Features = () => {
               );
             })}
           </div>
-
-          {/* Right side - Visual/Stats */}
-          {/* <div className="animate-slide-up animate-delay-200">
+            {/* Right side - Success Journey */}
+            <div className="animate-slide-up animate-delay-200">
             <div className="bg-white rounded-2xl p-8 shadow-xl">
               <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-                MockIt by the Numbers
+              Your Path to Success
               </h3>
               
-              <div className="grid grid-cols-2 gap-6">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-primary mb-2">10,000+</div>
-                  <div className="text-gray-600">Interviews Conducted</div>
+              <div className="space-y-6">
+              <div className="flex items-center space-x-4 p-4 bg-primary/5 rounded-lg">
+                <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
+                <span className="text-xl font-bold text-primary">1</span>
                 </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-success mb-2">95%</div>
-                  <div className="text-gray-600">Success Rate</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-primary mb-2">500+</div>
-                  <div className="text-gray-600">Expert Interviewers</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-success mb-2">4.9/5</div>
-                  <div className="text-gray-600">Average Rating</div>
+                <div>
+                <h4 className="font-semibold text-gray-900">Book a Session</h4>
+                <p className="text-sm text-gray-600">Choose your preferred time and interviewer</p>
                 </div>
               </div>
 
-              <div className="mt-8 p-4 bg-secondary rounded-lg">
-                <p className="text-center text-gray-700 font-medium">
-                  "MockIt helped me land my dream job at Google. The feedback was incredibly detailed and actionable."
-                </p>
-                <p className="text-center text-sm text-gray-600 mt-2">
-                  - Sarah K., Software Engineer
-                </p>
+              <div className="flex items-center space-x-4 p-4 bg-success/5 rounded-lg">
+                <div className="w-12 h-12 bg-success/20 rounded-full flex items-center justify-center">
+                <span className="text-xl font-bold text-success">2</span>
+                </div>
+                <div>
+                <h4 className="font-semibold text-gray-900">Practice Interview</h4>
+                <p className="text-sm text-gray-600">Get real interview experience</p>
+                </div>
               </div>
+
+              <div className="flex items-center space-x-4 p-4 bg-primary/5 rounded-lg">
+                <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
+                <span className="text-xl font-bold text-primary">3</span>
+                </div>
+                <div>
+                <h4 className="font-semibold text-gray-900">Receive Feedback</h4>
+                <p className="text-sm text-gray-600">Get detailed insights and improve</p>
+                </div>
+              </div>
+
+              <div className="flex items-center space-x-4 p-4 bg-success/5 rounded-lg">
+                <div className="w-12 h-12 bg-success/20 rounded-full flex items-center justify-center">
+                <span className="text-xl font-bold text-success">4</span>
+                </div>
+                <div>
+                <h4 className="font-semibold text-gray-900">Land Your Dream Job</h4>
+                <p className="text-sm text-gray-600">Ace your real interviews</p>
+                </div>
+              </div>
+              </div>
+                <div className="mt-8 text-center">
+                <button 
+                  onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+                >
+                  Start Your Journey
+                </button>
+                </div>
             </div>
-          </div> */}
+            </div>
         </div>
       </div>
     </section>
