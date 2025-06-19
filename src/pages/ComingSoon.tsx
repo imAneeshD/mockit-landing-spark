@@ -72,7 +72,7 @@ const ComingSoon = () => {
         {/* Logo */}
         <Link to="/" className="inline-flex items-center mb-8 hover:opacity-80 transition-opacity">
           <img 
-            src="./src/assets/images/logo.png" 
+            src="/lovable-uploads/logo.png" 
             alt="MockIt Logo" 
             className="w-16 h-12 mr-3"
           />
