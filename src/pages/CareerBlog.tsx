@@ -9,8 +9,8 @@ const CareerBlog = () => {
       id: 1,
       title: "10 Common Interview Mistakes and How to Avoid Them",
       excerpt: "Learn about the most frequent pitfalls candidates face during interviews and practical strategies to overcome them.",
-      author: "Sarah Johnson",
-      date: "2024-01-15",
+      author: "Admin",
+      date: "2025-01-15",
       readTime: "5 min read",
       category: "Interview Tips"
     },
@@ -18,8 +18,8 @@ const CareerBlog = () => {
       id: 2,
       title: "How to Research a Company Before Your Interview",
       excerpt: "A comprehensive guide to researching potential employers and using that knowledge to stand out in interviews.",
-      author: "Michael Chen",
-      date: "2024-01-10",
+      author: "Admin",
+      date: "2025-01-15",
       readTime: "7 min read",
       category: "Preparation"
     },
@@ -27,8 +27,8 @@ const CareerBlog = () => {
       id: 3,
       title: "Salary Negotiation: Getting What You're Worth",
       excerpt: "Master the art of salary negotiation with proven strategies and real-world examples from successful candidates.",
-      author: "Emily Rodriguez",
-      date: "2024-01-05",
+      author: "Admin",
+      date: "2025-01-15",
       readTime: "6 min read",
       category: "Career Growth"
     }

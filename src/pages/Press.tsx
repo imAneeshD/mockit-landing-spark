@@ -15,14 +15,14 @@ const Press = () => {
     {
       id: 2,
       title: "How MockIt is Helping Job Seekers Land Dream Jobs",
-      date: "2024-01-15",
+      date: "2025-01-15",
       excerpt: "Feature story on MockIt's impact on the job search process and candidate success rates.",
       publication: "Forbes"
     },
     {
       id: 3,
       title: "MockIt Named Best Interview Prep Platform of 2024",
-      date: "2024-01-10",
+      date: "2025-01-15",
       excerpt: "Annual awards recognize MockIt's innovation in career preparation technology.",
       publication: "Product Hunt"
     }
