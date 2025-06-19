@@ -28,7 +28,7 @@ const FAQ = () => {
     },
     {
       question: "Can I choose my interviewer?",
-      answer: "Yes! You can browse interviewer profiles, see their backgrounds, and choose someone who matches your target role and company. You can also specify preferences when booking."
+      answer: "Currently not available, but this feature is coming soon! You'll be able to browse interviewer profiles and choose someone who matches your target role and company."
     },
     {
       question: "What if I need to reschedule my interview?",
@@ -46,7 +46,7 @@ const FAQ = () => {
       question: "Can I practice for specific companies?",
       answer: "Absolutely! Our Pro plan includes company-specific interview preparation with interviewers who have experience at your target companies and understand their interview processes."
     }
-  ];
+    ];
 
   return (
     <section className="py-20 bg-white">
