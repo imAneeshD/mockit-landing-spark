@@ -80,7 +80,7 @@ const Features = () => {
           </div>
 
           {/* Right side - Visual/Stats */}
-          <div className="animate-slide-up animate-delay-200">
+          {/* <div className="animate-slide-up animate-delay-200">
             <div className="bg-white rounded-2xl p-8 shadow-xl">
               <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
                 MockIt by the Numbers
@@ -114,7 +114,7 @@ const Features = () => {
                 </p>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
